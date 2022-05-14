@@ -28,3 +28,13 @@ Route::prefix('admin')->middleware(['auth',CheckAdmin::class])->group(function()
     Route::get('/','HomeController@admin')->name('admin.dashboard');
 });
 
+
+Route::prefix('admin/category')->namespace('Admin')->middleware(['auth',CheckAdmin::class])->group(function(){
+    Route::get('/','CategoryController@index')->name('admin.category.index');
+    Route::get('/create','CategoryController@create')->name('admin.category.create');
+    Route::post('/create','CategoryController@store');
+    Route::get('/edit/{category}','CategoryController@edit')->name('admin.category.edit');
+    Route::put('/edit/{category}','CategoryController@update');
+    Route::delete('/delete/{category}','CategoryController@destroy')->name('admin.category.delete');
+});
+
