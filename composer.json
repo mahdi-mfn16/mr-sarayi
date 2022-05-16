@@ -12,10 +12,11 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3.1|^7.0.1",
-        "hekmatinasser/verta": "^2.1",
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "*"
+        "laravel/ui": "*",
+        "uxweb/sweet-alert": "^2.0",
+        "hekmatinasser/verta": "^2.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

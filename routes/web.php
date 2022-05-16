@@ -38,3 +38,24 @@ Route::prefix('admin/category')->namespace('Admin')->middleware(['auth',CheckAdm
     Route::delete('/delete/{category}','CategoryController@destroy')->name('admin.category.delete');
 });
 
+Route::prefix('admin/course')->namespace('Admin')->middleware(['auth',CheckAdmin::class])->group(function(){
+    Route::get('/','CourseController@index')->name('admin.course.index');
+    Route::get('/create','CourseController@create')->name('admin.course.create');
+    Route::post('/create','CourseController@store');
+    Route::get('/edit/{course}','CourseController@edit')->name('admin.course.edit');
+    Route::put('/edit/{course}','CourseController@update');
+    Route::delete('/delete/{course}','CourseController@destroy')->name('admin.course.delete');
+});
+Route::prefix('admin/image')->namespace('Admin')->middleware(['auth',CheckAdmin::class])->group(function(){
+    Route::post('/delete','ImageController@destroy')->name('admin.image.delete');
+});
+
+Route::prefix('admin/video')->namespace('Admin')->middleware(['auth',CheckAdmin::class])->group(function(){
+    Route::get('/{course}','VideoController@index')->name('admin.video.index');
+    Route::get('/{course}/create','VideoController@create')->name('admin.video.create');
+    Route::post('/{course}/create','VideoController@store');
+    Route::get('/{course}/edit/{video}','VideoController@edit')->name('admin.video.edit');
+    Route::put('/{course}/edit/{video}','VideoController@update');
+    Route::delete('/{course}/delete/{video}','VideoController@destroy')->name('admin.video.delete');
+});
+

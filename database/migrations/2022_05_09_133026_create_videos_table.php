@@ -19,7 +19,8 @@ class CreateVideosTable extends Migration
             $table->string('name');
             $table->time('length_time');
             $table->string('path');
-            $table->unsignedBigInteger('likes');
+            $table->unsignedBigInteger('likes')->default(0);
+            $table->unsignedBigInteger('episode');
             $table->unsignedBigInteger('course_id');
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->timestamps();

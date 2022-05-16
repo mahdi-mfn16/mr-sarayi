@@ -2,12 +2,6 @@
 @section('main')
 <a href="{{ route('admin.category.create') }}" class="btn btn-success float-right mb-2">ایجاد کتگوری</a>
 <table class="table table-striped">
-    <style>
-        table {
-            text-align: right;
-            direction: rtl;
-        }
-    </style>
     <thead class="thead-dark">
         <tr>
             <th scope="col">id</th>

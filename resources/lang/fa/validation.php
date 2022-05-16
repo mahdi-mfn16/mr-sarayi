@@ -98,7 +98,7 @@ return [
     'regex' => 'فرمت گزینه :attribute صحیح نمی باشد',
     'required' => 'تکمیل گزینه :attribute الزامی است',
     'required_if' => 'تکمیل گزینه :attribute زمانی که :other دارای مقدار :value است الزامی می باشد',
-    'required_unless' => 'تکمیل گزینه :attribute الزامی می باشد مگر :other دارای مقدار :values باشد',
+    'required_unless' => 'تکمیل گزینه :attribute الزامی می باشد',
     'required_with' => 'تکمیل گزینه :attribute زمانی که مقدار :values درصد است الزامی است',
     'required_with_all' => 'تکمیل گزینه :attribute زمانی که مقادیر :values درصد است الزامی می باشد',
     'required_without' => 'تکمیل گزینه :attribute زمانی که مقدار :values درصد نیست الزامی است',

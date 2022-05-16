@@ -27,7 +27,9 @@ class StoreRequest extends FormRequest
         return [
             'name'=>'required||min:3',
             'text'=>'required||max:100',
-            'slug'=>['required||regex:/^[[a-zA-Z0-9\s -]+$/' , Rule::unique('categories','slug')]
+            'slug'=>['required', 'regex:/^[[a-zA-Z0-9\s -]+$/' , Rule::unique('categories','slug')],
+            'image' => ['required', 'mimes:jpeg,jpg,png,gif','max:5000'],
+
         ];
     }
 }

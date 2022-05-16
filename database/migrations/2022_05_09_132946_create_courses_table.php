@@ -22,7 +22,7 @@ class CreateCoursesTable extends Migration
             $table->boolean('free')->default(1);
             $table->string('price')->nullable();
             $table->time('length_time');
-            $table->unsignedBigInteger('likes');
+            $table->unsignedBigInteger('likes')->default(0);
             $table->timestamps();
         });
 
