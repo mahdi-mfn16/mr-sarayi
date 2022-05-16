@@ -18,5 +18,6 @@ class ImageController extends Controller
             $image->delete();
         }
         return 'OK!';
+        
     }
 }
