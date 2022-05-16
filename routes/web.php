@@ -59,3 +59,4 @@ Route::prefix('admin/video')->namespace('Admin')->middleware(['auth',CheckAdmin:
     Route::delete('/{course}/delete/{video}','VideoController@destroy')->name('admin.video.delete');
 });
 
+

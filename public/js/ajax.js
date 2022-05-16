@@ -37,3 +37,46 @@ function deleteImage(tag) {
         }
     })
 }
+
+
+// ajax delete image from post, category, course editing
+
+function deleteVideo(tag) {
+    var tag = $(tag);
+    var imageId = tag.attr('data-videoId')
+    var ajaxRoute = tag.attr('data-route')
+
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this imaginary file!",
+        icon: "warning",
+        buttons: [
+            'No, cancel it!',
+            'Yes, I am sure!'
+        ],
+        dangerMode: true,
+    }).then(function(isConfirm) {
+        if (isConfirm) {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: ajaxRoute,
+                type: 'DELETE',
+                data: {
+                   
+                },
+                success: function(data) {
+                    $('.video-show').empty()
+                }
+            })
+
+        }
+    })
+}
+
+
+

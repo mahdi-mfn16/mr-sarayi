@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Video\StoreRequest;
+use App\Http\Requests\Admin\Video\UpdateRequest;
 use App\Models\Course;
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class VideoController extends Controller
 {
@@ -53,58 +55,72 @@ class VideoController extends Controller
 
 
 
-    // public function edit(Category $category)
-    // {      
-    //     return view('admin.category.edit', ['category'=>$category]);
-    // }
+    public function edit(Course $course, Video $video)
+    {      
+        return view('admin.video.edit', ['course'=>$course, 'video'=>$video]);
+    }
 
 
 
 
-    // public function update(UpdateRequest $request, Category $category)
-    // {
-    //     $data = $request->validated();
+    public function update(UpdateRequest $request, Course $course, Video $video)
+    {
+        $data = $request->validated();
 
-    //     $category->update([
-    //         'name'=>$data['name'],
-    //         'text'=>$data['text'],
-    //         'slug'=>$data['slug'],
-    //     ]);
+        if($request->hasFile('video')){
 
-    //     $oldImage = $category->image;
-    
+            if(File::exists(public_path($video->path))){
+                File::delete(public_path($video->path));
+            }
 
-    //     if($request->hasFile('image')){
-
-    //         if($oldImage){
-    //             if(File::exists(public_path($oldImage->path))){
-    //                 File::delete(public_path($oldImage->path));
-    //                 $oldImage->delete();
-    //             }
-    //         }
+            $newVideo = $request->file('video');
+            $videoObject = new Video();
+            list($name, $path) = $videoObject->upload($newVideo, $relatedTable = 'courses', $relatedId = $course->id);
             
-    //         $newImage = $request->file('image');
-    //         $imageModel = new Image();
-    //         $imageModel->upload($image = $newImage , $belongModel = $category, $tableName = 'categories');
-    //     }
+            $video->update([
+                'name'=>$name,
+                'path'=>'/uploads/'.$path,
+                'show_name'=>$data['show_name'],
+                'episode'=>$data['episode'],
+                'length_time'=>$data['length_time'],
+    
+            ]);
+        
+        }else{
 
-    //     alert()->success('category has updated successfully!', 'success');
-    //     return redirect(route('admin.category.index'));
-    // }
+            $video->update([
+                'show_name'=>$data['show_name'],
+                'episode'=>$data['episode'],
+                'length_time'=>$data['length_time'], 
+            ]);
+        }
+
+        
+
+        alert()->success('video has updated successfully!', 'success');
+        return redirect(route('admin.video.index',['course'=>$course->id]));
+
+    }
 
 
 
 
-    // public function destroy(Category $category)
-    // {
-    //     if(File::exists(public_path($category->image->path))){
-    //         File::delete(public_path($category->image->path));
-    //         $category->image->delete();
-    //     }
+    public function destroy(Request $request, Course $course, Video $video)
+    {
+        if(File::exists(public_path($video->path))){
+            File::delete(public_path($video->path));
+            $video->update([
+                'path'=>'',
+                'name'=>'',
+            ]);
+        }
 
-    //     $category->delete();
 
-    //     alert()->success('category has deleted successfully!', 'success');
-    //     return redirect(route('admin.category.index'));
-    // }
+        if($request->ajax()){
+            return "ok!";
+        }
+        $video->delete();
+        alert()->success('video has deleted successfully!', 'success');
+        return redirect(route('admin.video.index', ['course'=>$course->id]));
+    }
 }
