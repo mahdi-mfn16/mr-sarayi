@@ -11,9 +11,9 @@
     <div class="list-group">
         <a href="{{ route('admin.category.index') }}" class="list-group-item list-group-item-action list-group-item-dark active">مدیریت کتگوری</a>
         <a href="{{ route('admin.course.index') }}" class="list-group-item list-group-item-action list-group-item-dark">مدیریت کلاس ها</a>
-        <a href="#" class="list-group-item list-group-item-action list-group-item-dark">مدیریت ویدیو ها</a>
-        <a href="#" class="list-group-item list-group-item-action list-group-item-dark">مدیریت کاربران</a>
-        <a href="#" class="list-group-item list-group-item-action list-group-item-dark">مدیریت تصاویر</a>
+        <a href="{{ route('admin.user.index') }}" class="list-group-item list-group-item-action list-group-item-dark">مدیریت کاربران</a>
+        <a href="{{ route('admin.code.index') }}" class="list-group-item list-group-item-action list-group-item-dark">مدیریت کدهای فعال سازی</a>
+
     </div>
 </div>
 <div class="card-body col-md-9 h-100" style="background: #fff;">

@@ -47,8 +47,8 @@
     @if ($video->path != '')
     <div class="list-group video-show">
         <input type="hidden" name="old_video" value="{{ $video->id }}">
-        <span data-videoId="{{ $video->id }}" data-route="{{ route('admin.video.delete', ['course'=>$course->id, 'video'=>$video->id]) }}" onclick="deleteVideo(this)" style="cursor:pointer;position: relative; top: 10px; right: 90px; display: block; width: 20px; height: 20px; color: #fff; background: red; border-radius: 50%; text-align: center; line-height: 18px;">x</span>
-        <span style="display:block;width:100px;height:100px;background-position: center;background-size: cover;background-image: url({{ asset($video->path) }});"></span>
+        <span data-videoId="{{ $video->id }}" data-route="{{ route('admin.video.delete', ['course'=>$course->id, 'video'=>$video->id]) }}" onclick="deleteVideo(this)" style="cursor:pointer;position: relative; top: 10px; right: 50px; display: block; width: 20px; height: 20px; color: #fff; background: red; border-radius: 50%; text-align: center; line-height: 18px;">x</span>
+        <i class="fa fa-file-video-o fa-5x" aria-hidden="true"></i>
     </div>
     @endif
     <div class="list-group">

@@ -112,6 +112,14 @@ class CourseController extends Controller
             File::delete(public_path($course->image->path));
             $course->image->delete();
         }
+        
+        if(File::exists(public_path($course->videos->first()->path))){
+            foreach($course->videos as $video){
+                File::delete(public_path($video->path));
+                $video->delete();
+            }
+        }
+
         $course->delete();
         alert()->success('category has deleted successfully!', 'success');
         return redirect(route('admin.course.index'));

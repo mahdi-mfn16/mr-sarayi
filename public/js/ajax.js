@@ -79,4 +79,28 @@ function deleteVideo(tag) {
 }
 
 
+function deleteQuestion(tag) {
+
+    var form = $(tag).children('form');
+
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this Item!",
+        icon: "warning",
+        buttons: [
+            'No, cancel it!',
+            'Yes, I am sure!'
+        ],
+        dangerMode: true,
+    }).then(function(isConfirm) {
+        if (isConfirm) {
+           form.submit();
+        }else{
+            return false;
+        }
+    })
+}
+
+
+
 

@@ -59,4 +59,36 @@ Route::prefix('admin/video')->namespace('Admin')->middleware(['auth',CheckAdmin:
     Route::delete('/{course}/delete/{video}','VideoController@destroy')->name('admin.video.delete');
 });
 
+Route::prefix('admin/user')->namespace('Admin')->middleware(['auth',CheckAdmin::class])->group(function(){
+    Route::get('/','UserController@index')->name('admin.user.index');
+    Route::get('/create','UserController@create')->name('admin.user.create');
+    Route::post('/create','UserController@store');
+    Route::get('/edit/{user}','UserController@edit')->name('admin.user.edit');
+    Route::put('/edit/{user}','UserController@update');
+    Route::delete('/delete/{user}','UserController@destroy')->name('admin.user.delete');
+});
+
+Route::prefix('admin/code')->namespace('Admin')->middleware(['auth',CheckAdmin::class])->group(function(){
+    Route::get('/','ActiveCodeController@index')->name('admin.code.index');
+    Route::get('/create','ActiveCodeController@create')->name('admin.code.create');
+    Route::post('/create','ActiveCodeController@store');
+    Route::post('/activate/{code}','ActiveCodeController@activate')->name('admin.code.activate');
+    Route::post('/deactivate/{code}','ActiveCodeController@deActivate')->name('admin.code.deactivate');
+    Route::delete('/delete/{code}','ActiveCodeController@destroy')->name('admin.code.delete');
+});
+
+Route::get('/index', function(){
+    return view('user.index');
+});
+Route::get('/about', function(){
+    return view('user.public.about');
+});
+Route::get('/contact', function(){
+    return view('user.public.contact');
+});
+Route::get('/video', function(){
+    return view('user.video.index');
+});
+    
+
 
